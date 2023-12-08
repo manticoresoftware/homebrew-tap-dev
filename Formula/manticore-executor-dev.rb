@@ -16,7 +16,7 @@ class ManticoreExecutorDev < Formula
   )
 
   version fetched_info[:version]
-  url fetched_info[:file_url]
+  url fetched_info[:url]
   sha256 fetched_info[:sha256]
 
   depends_on "openssl"
