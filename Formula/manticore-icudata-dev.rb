@@ -6,12 +6,12 @@ class ManticoreIcudataDev < Formula
   version "65l"
   license "UNICODE, INC. LICENSE"
 
-  filepath, sha256 = ManticoreHelper.download_file(
+  url, sha256 = ManticoreHelper.download_file(
     'manticore-icudata',
     'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/manticore-icudata-65l.tar.gz'
   )
 
-  url "file://#{filepath}"
+  url url
   sha256 sha256
 
   def install
