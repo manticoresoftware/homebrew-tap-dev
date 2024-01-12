@@ -4,7 +4,7 @@ require 'hardware'
 class ManticoresearchDev < Formula
   desc "Open source database for search"
   homepage "https://manticoresearch.com"
-  license "GPL-2.0"
+  license "GPL-3.0"
 
   arch = Hardware::CPU.arch
   base_url = 'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/'

@@ -5,7 +5,7 @@ require "fileutils"
 class ManticoreExecutorDev < Formula
   desc "Custom built PHP to run misc scripts of Manticore"
   homepage "https://github.com/manticoresoftware/executor"
-  license "GPL-2.0"
+  license "PHP-3.01"
 
   arch = Hardware::CPU.arch
   base_url = 'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/'

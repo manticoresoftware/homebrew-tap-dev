@@ -5,7 +5,7 @@ require "fileutils"
 class ManticoreBuddyDev < Formula
   desc "Manticore Search's sidecar which helps it with various tasks"
   homepage "https://github.com/manticoresoftware/manticoresearch-buddy"
-  license "GPL-2.0"
+  license "GPL-3.0"
 
   arch = Hardware::CPU.arch
   base_url = 'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/'

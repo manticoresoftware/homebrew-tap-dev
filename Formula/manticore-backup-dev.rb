@@ -5,7 +5,7 @@ require "fileutils"
 class ManticoreBackupDev < Formula
   desc "Manticore Search backup tool"
   homepage "https://github.com/manticoresoftware/manticoresearch-backup"
-  license "GPL-2.0"
+  license "GPL-3.0"
 
   arch = Hardware::CPU.arch
   base_url = 'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/'
