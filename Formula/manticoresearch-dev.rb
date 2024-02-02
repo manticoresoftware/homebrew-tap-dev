@@ -32,6 +32,7 @@ class ManticoresearchDev < Formula
   def install
     bin.install Dir["bin/*"]
     man1.install Dir["share/doc/manticore/doc/*.1"]
+    ln_s "/usr/share/zoneinfo", "share/manticore/tzdata"
     share.install "share/manticore"
     include.install "include/manticore"
     etc.install "etc/manticoresearch"
