@@ -22,6 +22,7 @@ class ManticoreExecutorDev < Formula
   depends_on "openssl"
   depends_on "zstd"
   depends_on "oniguruma"
+  depends_on "librdkafka"
 
   def install
     bin.install "manticore-executor" => "manticore-executor"
