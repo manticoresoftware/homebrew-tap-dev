@@ -7,11 +7,12 @@ class ManticoreExtraDev < Formula
   url "file://" + File.expand_path(__FILE__)
   sha256 Digest::SHA256.file(File.expand_path(__FILE__)).hexdigest
 
+  arch = Hardware::CPU.arch
   base_url = 'https://repo.manticoresearch.com/repository/manticoresearch_macos/dev/'
   highest_version, highest_version_url = ManticoreHelper.find_version_and_url(
     'manticore-executor',
     base_url,
-    /(manticore-executor_)(\d+\.\d+\.\d+)(\-)(\d+\-)([\w]+)(_macos_amd64\.tar\.gz)/
+    /(manticore-executor_)(\d+\.\d+\.\d+)(\-)(\d+\-)([\w]+)(_macos_#{arch}\.tar\.gz)/
   )
   version "#{highest_version}"
 
