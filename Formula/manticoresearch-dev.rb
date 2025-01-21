@@ -20,7 +20,6 @@ class ManticoresearchDev < Formula
 
   depends_on "libpq"
   depends_on "mysql-client"
-  depends_on "openssl@1.1"
   depends_on "unixodbc"
   depends_on "zstd"
   depends_on "manticoresoftware/tap-dev/manticore-backup-dev" => :recommended
