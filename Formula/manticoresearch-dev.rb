@@ -25,6 +25,7 @@ class ManticoresearchDev < Formula
   depends_on "manticoresoftware/tap-dev/manticore-backup-dev" => :recommended
   depends_on "manticoresoftware/tap-dev/manticore-buddy-dev" => :recommended
   depends_on "manticoresoftware/tap-dev/manticore-icudata-dev" => :recommended
+  depends_on "manticoresoftware/tap-dev/manticore-load-dev" => :recommended
 
   conflicts_with "sphinx", because: "Manticore Search is a fork of Sphinxsearch"
 
