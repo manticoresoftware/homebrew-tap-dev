@@ -11,7 +11,7 @@ class ManticoreColumnarLibDev < Formula
   fetched_info = ManticoreHelper.fetch_version_and_url(
     'manticore-columnar-lib',
     base_url,
-    /(manticore-columnar-lib-)(\d+\.\d+\.\d+)(\-)(\d+-)([\w]+)(-osx11\.6-#{arch}\.tar\.gz)/
+    /(manticore-columnar-lib-)(\d+\.\d+\.\d+)(\-|\+|%2B)(\d+-)([\w]+)(-dev-osx11\.6-#{arch}\.tar\.gz)/
   )
 
   version fetched_info[:version]
