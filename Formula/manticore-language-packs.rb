@@ -21,11 +21,11 @@ class ManticoreLanguagePacks < Formula
     %w[hmm_model idf stop_words user.dict].each do |name|
       system "curl", "-sSL",
              "https://raw.githubusercontent.com/manticoresoftware/cppjieba/master/dict/#{name}.utf8",
-             "-o", (manticore_share/"#{name}.utf8")
+             "-o", (manticore_share/"jieba/#{name}.utf8")
     end
 
     system "curl", "-sSL",
            "https://raw.githubusercontent.com/manticoresoftware/jieba/refs/heads/master/extra_dict/dict.txt.big",
-           "-o", (manticore_share/"jieba.dict.utf8")
+           "-o", (manticore_share/"jieba/jieba.dict.utf8")
   end
 end
