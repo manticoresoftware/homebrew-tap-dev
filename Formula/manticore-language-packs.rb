@@ -14,18 +14,22 @@ class ManticoreLanguagePacks < Formula
       system "curl", "-sSL",
              "https://repo.manticoresearch.com/repository/morphology/#{lang}.pak.tgz",
              "-o", archive
-      system "tar", "xvzf", archive, "-C", manticore_share.to_s
+      system "tar", "xzf", archive, "-C", manticore_share.to_s
     end
 
-    # Download jieba dict files into the same directory as the .pak files
+    # Directory for jieba dict files (sibling to the .pak files)
+    jieba_dir = manticore_share/"jieba"
+    jieba_dir.mkpath
+
+    # Download jieba dict files
     %w[hmm_model idf stop_words user.dict].each do |name|
       system "curl", "-sSL",
              "https://raw.githubusercontent.com/manticoresoftware/cppjieba/master/dict/#{name}.utf8",
-             "-o", (manticore_share/"jieba/#{name}.utf8")
+             "-o", (jieba_dir/"#{name}.utf8")
     end
 
     system "curl", "-sSL",
            "https://raw.githubusercontent.com/manticoresoftware/jieba/refs/heads/master/extra_dict/dict.txt.big",
-           "-o", (manticore_share/"jieba/jieba.dict.utf8")
+           "-o", (jieba_dir/"jieba.dict.utf8")
   end
 end
