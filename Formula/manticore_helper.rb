@@ -23,7 +23,7 @@ module ManticoreHelper
       semver = match[1]
       separator = match[2]
       date = match[3]
-      date_i = date.delete("-").to_i
+      date_i = date ? date.delete("-").to_i : 0
       hash_id = match[4]
 
       versions << {
@@ -42,7 +42,7 @@ module ManticoreHelper
       raise "Could not find versions by using provided URL and pattern"
     end
 
-    versions.sort_by! { |v| [v[:semver], v[:date_i], v[:hash_id]] }.reverse!
+    versions.sort_by! { |v| [v[:semver], v[:date_i], v[:hash_id].to_s] }.reverse!
 
     highest_version = "#{versions.first[:semver]}#{versions.first[:separator]}#{versions.first[:date]}#{versions.first[:hash_id]}"
     highest_version_url = base_url + versions.first[:file]
