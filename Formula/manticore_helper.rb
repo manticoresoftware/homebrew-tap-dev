@@ -23,9 +23,17 @@ module ManticoreHelper
       semver = match[1]
       separator = match[2]
       date = match[3]
+      date_i = date.delete("-").to_i
       hash_id = match[4]
 
-      versions << { semver: Gem::Version.new(semver), separator: separator, date: date, hash_id: hash_id, file: "#{match[0]}#{semver}#{separator}#{date}#{hash_id}#{match[5]}" }
+      versions << {
+        semver: Gem::Version.new(semver),
+        separator: separator,
+        date: date,
+        date_i: date_i,
+        hash_id: hash_id,
+        file: "#{match[0]}#{semver}#{separator}#{date}#{hash_id}#{match[5]}"
+      }
     end
 
 #    puts "Found versions: #{versions}"
@@ -34,7 +42,7 @@ module ManticoreHelper
       raise "Could not find versions by using provided URL and pattern"
     end
 
-    versions.sort_by! { |v| [v[:semver], v[:date]] }.reverse!
+    versions.sort_by! { |v| [v[:semver], v[:date_i], v[:hash_id]] }.reverse!
 
     highest_version = "#{versions.first[:semver]}#{versions.first[:separator]}#{versions.first[:date]}#{versions.first[:hash_id]}"
     highest_version_url = base_url + versions.first[:file]
