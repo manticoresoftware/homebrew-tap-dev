@@ -23,6 +23,7 @@ class ManticoreExecutorDev < Formula
   depends_on "zstd"
   depends_on "oniguruma"
   depends_on "librdkafka"
+  depends_on "libzip"
   depends_on "libiconv"
 
   def install
