@@ -19,6 +19,7 @@ class ManticoresearchDev < Formula
   sha256 fetched_info[:sha256]
 
   depends_on "libpq"
+  depends_on "curl"
   depends_on "mysql-client"
   depends_on "unixodbc"
   depends_on "zstd"
