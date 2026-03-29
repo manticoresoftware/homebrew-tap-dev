@@ -1,7 +1,7 @@
 require_relative 'manticore_helper'
 require 'hardware'
 
-class ManticoresearchDev < Formula
+class ManticoreDev < Formula
   desc "Open source database for search"
   homepage "https://manticoresearch.com"
   license "GPL-3.0"
@@ -11,30 +11,40 @@ class ManticoresearchDev < Formula
   fetched_info = ManticoreHelper.fetch_version_and_url(
     'manticoresearch',
     base_url,
-    /(manticore-)(\d+\.\d+\.\d+)(\-)(\d+-)([\w]+)(-osx11\.6-#{arch}-main\.tar\.gz)/
+    /(manticore-)(\d+\.\d+\.\d+)(\-)(\d+-)([\w]+)(-osx11\.6-#{arch}\.tar\.gz)/
   )
 
   version fetched_info[:version]
   url fetched_info[:url]
   sha256 fetched_info[:sha256]
 
-  depends_on "libpq"
-  depends_on "curl"
-  depends_on "mysql-client"
-  depends_on "unixodbc"
+  depends_on "brotli"
+  depends_on "libiconv"
+  depends_on "librdkafka"
+  depends_on "libzip"
+  depends_on "oniguruma"
+  depends_on "openssl@3"
   depends_on "zstd"
-  depends_on "manticoresoftware/tap-dev/manticore-backup-dev" => :recommended
-  depends_on "manticoresoftware/tap-dev/manticore-buddy-dev" => :recommended
-  depends_on "manticoresoftware/tap-dev/manticore-icudata-dev" => :recommended
-  depends_on "manticoresoftware/tap-dev/manticore-load-dev" => :recommended
 
   conflicts_with "sphinx", because: "Manticore Search is a fork of Sphinxsearch"
+  conflicts_with "manticoresoftware/tap-dev/manticore-backup-dev", because: "manticore-dev now ships the backup tool"
+  conflicts_with "manticoresoftware/tap-dev/manticore-buddy-dev", because: "manticore-dev now ships Manticore Buddy"
+  conflicts_with "manticoresoftware/tap-dev/manticore-columnar-lib-dev", because: "manticore-dev now ships the columnar libraries"
+  conflicts_with "manticoresoftware/tap-dev/manticore-executor-dev", because: "manticore-dev now ships manticore-executor"
+  conflicts_with "manticoresoftware/tap-dev/manticore-galera-dev", because: "manticore-dev now ships the Galera library"
+  conflicts_with "manticoresoftware/tap-dev/manticore-icudata-dev", because: "manticore-dev now ships ICU data"
+  conflicts_with "manticoresoftware/tap-dev/manticore-language-packs", because: "manticore-dev now ships the language packs"
+  conflicts_with "manticoresoftware/tap-dev/manticore-load-dev", because: "manticore-dev now ships manticore-load"
 
   def install
     bin.install Dir["bin/*"]
-    man1.install Dir["share/doc/manticore/doc/*.1"]
+    man1.install Dir["share/man/man1/*.1"]
+    doc.install Dir["share/doc/manticore/*"]
     ln_s "/usr/share/zoneinfo", "share/manticore/tzdata"
     share.install "share/manticore"
+    bin.install_symlink share/"manticore/modules/manticore-buddy/bin/manticore-buddy"
+    ln_s share/"manticore/modules/lib_manticore_knn_embeddings.dylib",
+         share/"manticore/modules/lib_manticore_knn_embeddings.so"
     include.install "include/manticore"
     etc.install "etc/manticoresearch"
   end
@@ -53,6 +63,10 @@ class ManticoresearchDev < Formula
   end
 
   test do
+    assert_predicate bin/"manticore-backup", :exist?
+    assert_predicate bin/"manticore-buddy", :exist?
+    assert_predicate share/"manticore/icu/icudt65l.dat", :exist?
+    assert_predicate share/"manticore/modules/lib_manticore_knn_embeddings.so", :symlink?
     (testpath/"manticore.conf").write <<~EOS
       searchd {
         pid_file = searchd.pid

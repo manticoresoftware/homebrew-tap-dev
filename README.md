@@ -6,6 +6,10 @@ The upstream is https://github.com/manticoresoftware/homebrew-tap/ .
 
 If you encounter a hash mismatch error, run `brew cleanup --prune=all`.
 
-To restart execute `brew services restart manticoresearch-dev`.
+To install from this tap:
+
+`brew install manticoresoftware/tap-dev/manticore-dev`
+
+To restart execute `brew services restart manticore-dev`.
 
 To install Manticore Search please follow https://manticoresearch.com/install/ for instructions.
