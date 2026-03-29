@@ -28,6 +28,7 @@ class ManticoreDev < Formula
   depends_on "zstd"
 
   conflicts_with "sphinx", because: "Manticore Search is a fork of Sphinxsearch"
+  conflicts_with "manticoresoftware/tap-dev/manticoresearch-dev", because: "manticore-dev replaces manticoresearch-dev"
   conflicts_with "manticoresoftware/tap-dev/manticore-backup-dev", because: "manticore-dev now ships the backup tool"
   conflicts_with "manticoresoftware/tap-dev/manticore-buddy-dev", because: "manticore-dev now ships Manticore Buddy"
   conflicts_with "manticoresoftware/tap-dev/manticore-columnar-lib-dev", because: "manticore-dev now ships the columnar libraries"
