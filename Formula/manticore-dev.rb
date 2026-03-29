@@ -19,6 +19,7 @@ class ManticoreDev < Formula
   sha256 fetched_info[:sha256]
 
   depends_on "brotli"
+  depends_on "curl"
   depends_on "libiconv"
   depends_on "librdkafka"
   depends_on "libzip"
