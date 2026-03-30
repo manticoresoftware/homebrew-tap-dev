@@ -18,7 +18,10 @@ class ManticoreDev < Formula
   url fetched_info[:url]
   sha256 fetched_info[:sha256]
 
+  depends_on "libpq"
   depends_on "brotli"
+  depends_on "mysql-client"
+  depends_on "unixodbc"
   depends_on "curl"
   depends_on "libiconv"
   depends_on "librdkafka"
